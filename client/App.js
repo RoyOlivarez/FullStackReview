@@ -6,9 +6,26 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      tasks: ['Create a front end', "Conect the server"] // --> This is the initial state
+      tasks: [] // --> This is the initial state
     };
   };
+
+  componentDidMount() {
+    this.getDBTask();
+  }
+
+  getDBTask() {
+    axios.get('/test')
+     .then((response) => {
+      console.log("This is my client response: ", response);
+      this.setState({
+        tasks: response.data
+      })
+    })
+     .catch(function (error) {
+       console.log(error);
+      });
+    }
 
   // make sure you add props to your component. You can name the prop whatever you want.
   render() {

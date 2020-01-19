@@ -25,10 +25,18 @@ const addTask = ( task, callback ) => {
       callback( null, results )
     }
   }) 
-  
 }
 
-
+const deleteTask = ( id, callback ) => {
+  console.log( "This is from the deleteTask query in the db; ", id );
+  connection.query( `DELETE FROM tasks WHERE id="${ id }"`, ( err, data ) => {
+    if ( err ) {
+      console.log( "This is from the deleteTask query in the db; ", err )
+    } else {
+      callback(null, data);
+    } 
+  });
+};
  
 // this is a get request that adds all tasks from todos db to a front side list
 const getTasks = ( callback ) => {
@@ -41,5 +49,5 @@ const getTasks = ( callback ) => {
 })
 }
 
-module.exports = { getTasks, addTask }
+module.exports = { getTasks, addTask, deleteTask }
 

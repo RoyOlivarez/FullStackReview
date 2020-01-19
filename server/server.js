@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, "../dist")));
 
 // Test request
 app.get('/test', function (req, res) {
-  db.sendReq((err, results) => {
+  db.getTasks((err, results) => {
     if (err) {
       console.log(err)
     } else {

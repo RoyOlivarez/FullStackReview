@@ -1,4 +1,4 @@
-var mysql      = require('mysql');
+var mysql  = require('mysql');
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -8,14 +8,9 @@ var connection = mysql.createConnection({
  
 connection.connect();
  
-// connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
-//   if (error) throw error;
-//   console.log('The solution is: ', results[0].solution);
-// });
-
-const sendReq = (callback) => {
+// this is a get request that adds all tasks from todos db to a front side list
+const getTasks = (callback) => {
   connection.query('SELECT * from tasks;', (error, results) => {
-    console.log(results)
     if (error) {
       callback(error);
     } else {
@@ -24,5 +19,5 @@ const sendReq = (callback) => {
 })
 }
 
-module.exports = { sendReq }
+module.exports = { getTasks }
 

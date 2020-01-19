@@ -16,7 +16,7 @@ connection.connect( err => {
   }
 });
 
-// This is a query that adds input text the front side task into the task table in the todos database
+// This is a query that adds an item into the tasks table in the todos db
 const addTask = ( task, callback ) => {
   connection.query( `INSERT INTO tasks (task) VALUES ("${ task }")`, ( err, results ) => {
     if ( err ) {
@@ -27,6 +27,7 @@ const addTask = ( task, callback ) => {
   }) 
 }
 
+// This is a query that deletes an item from the task table in the todos db
 const deleteTask = ( id, callback ) => {
   console.log( "This is from the deleteTask query in the db; ", id );
   connection.query( `DELETE FROM tasks WHERE id="${ id }"`, ( err, data ) => {
@@ -38,7 +39,7 @@ const deleteTask = ( id, callback ) => {
   });
 };
  
-// this is a get request that adds all tasks from todos db to a front side list
+// this is a query for all items from the task table in the todos db
 const getTasks = ( callback ) => {
   connection.query( 'SELECT * from tasks;', ( error, results ) => {
     if ( error ) {

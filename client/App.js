@@ -15,7 +15,7 @@ export default class App extends React.Component {
   }
 
   getDBTask() {
-    axios.get('/test')
+    axios.get('/todo')
      .then((response) => {
       console.log("This is my client response: ", response);
       this.setState({

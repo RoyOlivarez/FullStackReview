@@ -2,15 +2,20 @@ import React from 'react';
 
 export default class App extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {};
+    super(props);
+    this.state = {
+      inputTask: '',
+      tasks: []
+    };
   }
-}
 
-render () {
-  return (
-    <div>
-      <h1>This is React!!!!</h1>
-    </div>
-  )
+  render() {
+    return (
+      <div>
+        <h3>Todo list</h3>
+        <input />
+        <button>Add Task</button>
+      </div>
+    );
+  }
 }

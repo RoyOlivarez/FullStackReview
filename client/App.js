@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Task from './Task';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -56,6 +57,7 @@ export default class App extends React.Component {
         <h3>Todo list</h3>
         <input value={this.state.inputTask} onChange={this.taskInput} />
         <button onClick={this.sendTask}>Add Task</button>
+        <Task task={this.state.tasks} />
       </div>
     );
   }

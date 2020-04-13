@@ -7,11 +7,28 @@ var connection = mysql.createConnection({
   database: 'todos'
 });
 
-connection.connect();
-
-connection.query('SELECT 1 + 1 AS solution', function(error, results, fields) {
-  if (error) throw error;
-  console.log('The solution is: ', results[0].solution);
+connection.connect(err => {
+  if (err) {
+    console.log('This is from the db connection: ', err);
+  }
+  console.log('Your database is now connected!');
 });
 
-module.exports = connection;
+const getTasks = callback => {
+  connection.query('SELECT * FROM tasks', (err, results) => {
+    console.log('This is from db getTask: ', results);
+    if (err) throw err;
+    else callback(null, results);
+  });
+};
+
+const addTask = (task, callback) => {
+  connection.query(
+    `INSERT INTO tasks (task) VALUES ("${task}")`,
+    (err, results) => {
+      if (err) throw err;
+      else callback(null, results);
+    }
+  );
+};
+module.exports = { getTasks, addTask };
